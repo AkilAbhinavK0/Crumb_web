@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand Colors */
+  --color-brand-black: oklch(0.145 0 0);
+  --color-brand-white: oklch(0.985 0 0);
+  --color-brand-light: #F0F2F5;
+  --color-brand-accent: oklch(0.6 0.2 250);
+
+  --bg-primary: var(--color-brand-black);
+  --text-primary: var(--color-brand-white);
+
+  /* Atmosphere Variables - Dark (Default) */
+  --atmosphere-base: #000000;
+  --atmosphere-glow: rgba(30, 58, 138, 0.2);
+
+  /* Fluid Typography - Scales smoothly across all viewports */
+  --text-hero: clamp(3.5rem, 12vw, 11.25rem);
+  --text-display: clamp(2rem, 6vw, 4.5rem);
+  --text-title: clamp(1.5rem, 4vw, 3rem);
+  --text-body: clamp(0.875rem, 2vw, 1rem);
+  --text-small: clamp(0.75rem, 1.5vw, 0.875rem);
+
+  /* Fluid Spacing */
+  --space-section: clamp(4rem, 8vw, 8rem);
+  --space-container: clamp(1rem, 4vw, 3rem);
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Tighter letter spacing for premium feel */
+  letter-spacing: -0.02em;
+}
+
+html.light {
+  --bg-primary: var(--color-brand-light);
+  --text-primary: var(--color-brand-black);
+
+  /* Atmosphere Variables - Light */
+  --atmosphere-base: var(--color-brand-light);
+  --atmosphere-glow: rgba(59, 130, 246, 0.1);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  width: 100%;
+  cursor: none;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Hide cursor on all interactive elements */
+*,
+*::before,
+*::after {
+  cursor: none !important;
+}
+
+/* Restore cursor on touch devices */
+@media (pointer: coarse) {
+
+  body,
+  *,
+  *::before,
+  *::after {
+    cursor: auto !important;
+  }
+}
