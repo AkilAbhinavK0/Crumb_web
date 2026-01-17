@@ -27,7 +27,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const [theme, setTheme] = useState<Theme>('dark');
     const sectionsRef = useRef<Map<string, SectionInfo>>(new Map());
     const cachedGeometryRef = useRef<CachedSectionGeometry[]>([]);
-    const rafRef = useRef<number | undefined>();
+    const rafRef = useRef<number | undefined>(undefined);
 
     // Measure and cache section geometry
     const updateGeometryCache = useCallback(() => {
