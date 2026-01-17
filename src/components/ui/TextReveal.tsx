@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, type Variants } from 'motion/react';
 import { cn } from '../../utils/cn';
 
-interface DisintegratingTextProps {
+interface TextRevealProps {
     text: string;
     className?: string;
     delay?: number;
@@ -27,7 +27,7 @@ const animation: Variants = {
     }
 };
 
-export const DisintegratingText: React.FC<DisintegratingTextProps> = ({ text, className, delay = 0 }) => {
+export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay = 0 }) => {
     return (
         <motion.h1
             className={cn("flex overflow-hidden", className)}

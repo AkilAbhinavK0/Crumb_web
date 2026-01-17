@@ -6,6 +6,7 @@ interface MouseContextType {
     isHovering: boolean;
     setIsHovering: (hover: boolean) => void;
     targetElement: HTMLElement | null;
+    targetBounds: DOMRect | null;
 }
 
 const MouseMotionContext = createContext<MouseContextType | null>(null);
@@ -23,6 +24,16 @@ export const MouseMotionProvider: React.FC<{ children: React.ReactNode }> = ({ c
     const y = useRef(0);
     const [isHovering, setIsHovering] = useState(false);
     const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
+    const [targetBounds, setTargetBounds] = useState<DOMRect | null>(null);
+
+    // Measure bounds when target element changes
+    useEffect(() => {
+        if (targetElement) {
+            setTargetBounds(targetElement.getBoundingClientRect());
+        } else {
+            setTargetBounds(null);
+        }
+    }, [targetElement]);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -46,7 +57,7 @@ export const MouseMotionProvider: React.FC<{ children: React.ReactNode }> = ({ c
     }, []);
 
     return (
-        <MouseMotionContext.Provider value={{ x, y, isHovering, setIsHovering, targetElement }}>
+        <MouseMotionContext.Provider value={{ x, y, isHovering, setIsHovering, targetElement, targetBounds }}>
             {children}
         </MouseMotionContext.Provider>
     );

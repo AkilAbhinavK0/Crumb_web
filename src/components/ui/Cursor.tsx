@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useMouse } from '../../context/MouseMotionContext';
+import { useMouse } from '../../contexts/MouseMotionContext';
 import { cn } from '../../utils/cn';
 
-export const AntimetalCursor: React.FC = () => {
-    const { x, y, isHovering, targetElement } = useMouse();
+export const Cursor: React.FC = () => {
+    const { x, y, isHovering, targetElement, targetBounds } = useMouse();
     const ringRef = useRef<HTMLDivElement>(null);
     const dotRef = useRef<HTMLDivElement>(null);
     const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -26,10 +26,9 @@ export const AntimetalCursor: React.FC = () => {
             let targetX = x.current;
             let targetY = y.current;
 
-            if (isHovering && targetElement) {
-                const rect = targetElement.getBoundingClientRect();
-                const elementCenterX = rect.left + rect.width / 2;
-                const elementCenterY = rect.top + rect.height / 2;
+            if (isHovering && targetElement && targetBounds) {
+                const elementCenterX = targetBounds.left + targetBounds.width / 2;
+                const elementCenterY = targetBounds.top + targetBounds.height / 2;
 
                 // Calculate distance to element center
                 const dx = elementCenterX - x.current;
@@ -69,7 +68,7 @@ export const AntimetalCursor: React.FC = () => {
         animate();
 
         return () => cancelAnimationFrame(animationFrameId);
-    }, [x, y, isHovering, targetElement]);
+    }, [x, y, isHovering, targetElement, targetBounds]);
 
     // Hide cursor on touch devices
     if (isTouchDevice) {

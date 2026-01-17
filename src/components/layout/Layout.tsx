@@ -3,10 +3,12 @@ import Lenis from 'lenis';
 import { generateNoise } from '../../utils/noise';
 import { useLocation } from 'react-router-dom';
 import { Navbar } from './Navbar';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [noiseBg, setNoiseBg] = useState('');
     const location = useLocation();
+    const { theme } = useTheme();
 
     useEffect(() => {
         setNoiseBg(generateNoise());
@@ -37,6 +39,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location.pathname]);
+
+    // Update document theme class
+    useEffect(() => {
+        document.documentElement.classList.remove('dark', 'light');
+        document.documentElement.classList.add(theme);
+    }, [theme]);
 
     return (
         <div className="relative min-h-screen w-full bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-700 ease-in-out font-sans overflow-x-hidden selection:bg-blue-500 selection:text-white">

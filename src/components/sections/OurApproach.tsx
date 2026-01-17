@@ -35,7 +35,7 @@ export const OurApproach: React.FC = () => {
                     />
 
                     {steps.map((step, index) => (
-                        <div key={index} className="relative z-10 flex md:flex-col items-center mb-12 md:mb-0 gap-6 md:gap-8 w-full md:w-auto">
+                        <div key={index} className={`relative z-10 flex md:flex-col items-center gap-6 md:gap-8 w-full md:w-auto ${index !== steps.length - 1 ? 'mb-12 md:mb-0' : ''}`}>
                             {/* Circle Node */}
                             <motion.div
                                 initial={{ scale: 0 }}

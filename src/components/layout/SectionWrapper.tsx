@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useInView } from 'motion/react';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface SectionWrapperProps {
     children: React.ReactNode;
@@ -10,17 +10,14 @@ interface SectionWrapperProps {
 
 export const SectionWrapper: React.FC<SectionWrapperProps> = ({ children, theme = 'dark', className = '', id }) => {
     const ref = useRef<HTMLElement>(null);
-    const isInView = useInView(ref, { margin: "-40% 0px -40% 0px" }); // Trigger when element overlaps the middle 20% of view
+    const { registerSection, unregisterSection } = useTheme();
 
     useEffect(() => {
-        if (isInView) {
-            document.documentElement.classList.remove('dark', 'light');
-            document.documentElement.classList.add(theme);
-
-            // Also update background colors directly if using variables that depend on class
-            // Our index.css handles html.light variables.
+        if (id) {
+            registerSection({ id, theme, ref });
+            return () => unregisterSection(id);
         }
-    }, [isInView, theme]);
+    }, [id, theme, registerSection, unregisterSection]);
 
     return (
         <section

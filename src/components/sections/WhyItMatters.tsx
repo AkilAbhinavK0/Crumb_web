@@ -9,8 +9,8 @@ export const WhyItMatters: React.FC = () => {
         offset: ["start end", "end start"]
     });
 
-    const scale = useTransform(scrollYProgress, [0.8, 1], [1, 0.9]);
-    const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0.8, 1], [1, 0.95]);
+    const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0.3]);
 
     return (
         <SectionWrapper id="why-it-matters" theme="dark" className="flex items-center justify-center min-h-[80vh]">
@@ -24,12 +24,24 @@ export const WhyItMatters: React.FC = () => {
                 </span>
 
                 <div className="space-y-6">
-                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight text-[var(--color-brand-white)]">
+                    <motion.h2
+                        initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
+                        whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ once: true, margin: "-10%" }}
+                        className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight text-white"
+                    >
                         Technology shapes how people work, think, and live.
-                    </h2>
-                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight text-[var(--text-primary)]/50">
+                    </motion.h2>
+                    <motion.h2
+                        initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
+                        whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                        viewport={{ once: true, margin: "-10%" }}
+                        className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight text-white"
+                    >
                         We believe it should be built carefully, responsibly, and with intent.
-                    </h2>
+                    </motion.h2>
                 </div>
             </motion.div>
         </SectionWrapper>
