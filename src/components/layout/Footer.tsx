@@ -5,7 +5,7 @@ import { ArrowUpRight } from 'lucide-react';
 export const Footer: React.FC = () => {
     const socials = [
         { name: "Twitter / X", url: "https://x.com/CrumbCorp" },
-        { name: "LinkedIn", url: "https://www.linkedin.com/in/crumb-corp-7334033a3" },
+        { name: "LinkedIn", url: "https://www.linkedin.com/company/crumb-corp/" },
         { name: "GitHub", url: "https://github.com/crumbcorp" },
         { name: "Instagram", url: "https://www.instagram.com/crumb.corp/" }
     ];
