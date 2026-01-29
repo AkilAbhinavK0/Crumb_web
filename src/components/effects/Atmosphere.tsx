@@ -9,13 +9,26 @@ export const Atmosphere: React.FC = () => {
                 style={{ backgroundColor: 'var(--atmosphere-base, #000000)' }}
             />
 
-            {/* Glow from Center - Uses CSS Variable from theme */}
-            <div
-                className="absolute inset-0 transition-opacity duration-700"
-                style={{
-                    background: 'radial-gradient(circle at center, var(--atmosphere-glow, rgba(30, 58, 138, 0.1)) 0%, transparent 50%)'
-                }}
-            />
+            {/* Dual-Sided Ambient Glow */}
+            <div className="absolute inset-0 transition-opacity duration-700">
+                {/* Left Glow */}
+                <div
+                    className="absolute inset-y-0 left-0 w-[50vw] h-full"
+                    style={{
+                        background: 'radial-gradient(circle at -20% 50%, rgba(60, 120, 255, 0.25) 0%, transparent 70%)',
+                        opacity: 0.8
+                    }}
+                />
+
+                {/* Right Glow */}
+                <div
+                    className="absolute inset-y-0 right-0 w-[50vw] h-full"
+                    style={{
+                        background: 'radial-gradient(circle at 120% 50%, rgba(60, 120, 255, 0.25) 0%, transparent 70%)',
+                        opacity: 0.8
+                    }}
+                />
+            </div>
         </div>
     );
 };
